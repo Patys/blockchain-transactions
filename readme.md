@@ -1,7 +1,6 @@
-# Basic mining
+# Basic transactions
 
-It's basic implementation of blockchain with mining.
-Hash resolving, proof of work.
+It's basic implementation of blockchain with transactions.
 
 ## Created for learning purpose
 
