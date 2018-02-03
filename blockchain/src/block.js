@@ -1,17 +1,17 @@
-const CryptoJS = require("crypto-js")
-
+const crypto = require('crypto');
 class Block {
   constructor(index, previousHash, timestamp, data) {
     this.index = index
     this.previousHash = previousHash
     this.timestamp = timestamp
-    this.data = data
+    this.data = flatten([data])
     this.hash = this.calculateHash()
     this.nonce = 0
   }
 
   calculateHash() {
-    return CryptoJS.SHA256(this.index + this.previousHash + this.timestamp + JSON.stringify(this.data) + this.nonce).toString()
+    const data = this.index + this.previousHash + this.timestamp + JSON.stringify(this.data) + this.nonce
+    return crypto.createHash('sha256').update(data).digest().toString('hex')
   }
 
   mineBlock(difficulty) {
@@ -24,3 +24,8 @@ class Block {
 }
 
 module.exports = Block
+
+const flatten = (arr, depth = 1) =>
+  depth != 1
+    ? arr.reduce((a, v) => a.concat(Array.isArray(v) ? flatten(v, depth - 1) : v), [])
+    : arr.reduce((a, v) => a.concat(v), []);

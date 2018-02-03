@@ -13,6 +13,6 @@
   "author": "Patryk Szczygło",
   "license": "ISC",
   "dependencies": {
-    "crypto-js": "^3.1.9-1"
+    "secp256k1": "^3.5.0"
   }
 }
